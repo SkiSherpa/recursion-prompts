@@ -92,13 +92,25 @@ var isEven = function(n) {
         }
         return isEven(n + 2);
     }
-    
 };
 
-// 5. Sum all integers below a given integer.
+// 5. Sum all integers below a given integer. - exclusive
 // sumBelow(10); // 45
 // sumBelow(7); // 21
 var sumBelow = function(n) {
+    if (n >= 0) {
+        if (n === 0) {
+            return 0;
+        }
+        var result = n - 1;
+        return result += sumBelow(n - 1);
+    } else {
+        if (n === -1) {
+            return 0;
+        }
+        var result = n + 1;
+        return result += sumBelow(n + 1);
+    }
 };
 
 // 6. Get the integers within a range (x, y).
