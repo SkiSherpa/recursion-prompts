@@ -115,7 +115,25 @@ var sumBelow = function(n) {
 
 // 6. Get the integers within a range (x, y).
 // range(2,9); // [3,4,5,6,7,8]
+// if ( x === y) return []
+// var arr = []
+// return arr.concat(range(x, y -1))
+// expect(range(7,2)).to.eql([6,5,4,3]);
 var range = function(x, y) {
+    if (Math.abs(y - x) === 1 || Math.abs(y - x) === 0) {
+        return [];
+    } 
+    if (x < y) {
+        if (x === y - 1) return [];
+        var arr = [x + 1];
+        console.log(arr);
+        return arr.concat(range(x + 1, y));
+    } else {
+        if (x === y - 1) return [];
+        var arr = [x - 1];
+        console.log(arr);
+        return arr.concat(range(x - 1, y));
+    }
 };
 
 // 7. Compute the exponent of a number.
