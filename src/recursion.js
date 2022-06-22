@@ -126,12 +126,10 @@ var range = function(x, y) {
     if (x < y) {
         if (x === y - 1) return [];
         var arr = [x + 1];
-        console.log(arr);
         return arr.concat(range(x + 1, y));
     } else {
         if (x === y - 1) return [];
         var arr = [x - 1];
-        console.log(arr);
         return arr.concat(range(x - 1, y));
     }
 };
@@ -141,7 +139,20 @@ var range = function(x, y) {
 // 8^2 = 8 x 8 = 64. Here, 8 is the base and 2 is the exponent.
 // exponent(4,3); // 64
 // https://www.khanacademy.org/computing/computer-science/algorithms/recursive-algorithms/a/computing-powers-of-a-number
+//  if (exp === 1) return "base" number
+// return "base" * exponent(base, exp - 1);
+
+// b^-n = 1 / b^n
 var exponent = function(base, exp) {
+    if (exp >= 0) {
+        if (exp === 0) return 1;
+        if (exp === 1) return base;
+        return base * exponent(base, exp - 1);
+    } else {
+        if (exp === -1) return base;
+        var result = 1/(exponent(base, -exp));
+        return result;
+    }
 };
 
 // 8. Determine if a number is a power of two.
@@ -149,6 +160,18 @@ var exponent = function(base, exp) {
 // powerOfTwo(16); // true
 // powerOfTwo(10); // false
 var powerOfTwo = function(n) {
+    if (n === 1) {
+        return true;
+    }
+    if (n > 2) {
+       return powerOfTwo(n/2);
+    }
+    if (n <= 2) {
+        if (n === 2) {
+            return true;
+        }
+        return false;
+    }
 };
 
 // 9. Write a function that reverses a string.
