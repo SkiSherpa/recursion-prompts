@@ -175,7 +175,17 @@ var powerOfTwo = function(n) {
 };
 
 // 9. Write a function that reverses a string.
+// IF str.length === 0
+    // return ''
+// take letter from back and add to string
+// slice off last letter - make recursive call
 var reverse = function(string) {
+    if (string.length === 0) {
+        return '';
+    }
+    var str = string[string.length - 1];
+    console.log(str);
+    return str += reverse(string.slice(0, string.length - 1));
 };
 
 // 10. Write a function that determines if a string is a palindrome.
