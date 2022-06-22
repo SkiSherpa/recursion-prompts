@@ -184,13 +184,34 @@ var reverse = function(string) {
         return '';
     }
     var str = string[string.length - 1];
-    console.log(str);
     return str += reverse(string.slice(0, string.length - 1));
 };
 
-// 10. Write a function that determines if a string is a palindrome.
+// 10. Write a function that determines if a string is a palindrome. ex: racecar
+// IF (initial letter does NOT match the last letter)
+    // return false
+// IF (length of "string" is zero or 1)
+    // return true
+// recursive call - slice off inital and last letter for pass
 var palindrome = function(string) {
+    if (string.length === 0 || string.length === 1) {
+        return true;
+    }
+    var initialLetter = string[0].toLowerCase();
+    var lastLetter = string[string.length - 1].toLowerCase();
+    if (initialLetter !== lastLetter) {
+        return false;
+    }
+    var nextPass = string.slice(1, string.length - 1);
+    return palindrome(nextPass);
 };
+// Sol below works but doesn't count as recusion solve.
+ // var reverseStr = reverse(string);
+    // console.log(reverseStr);
+    // if (string.toLowerCase() === reverseStr.toLowerCase()) {
+    //     return true;
+    // }
+    // return false;
 
 // 11. Write a function that returns the remainder of x divided by y without using the
 // modulo (%) operator.
