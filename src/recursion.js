@@ -32,6 +32,7 @@ var sum = function(array) {
 
 // 3. Sum all numbers in an array containing nested arrays.
 // arraySum([1,[2,3],[[4]],5]); // 15
+// IF array.length === 1 return that element - THIS is causing the problem with 4
 // loop thro "array"
 // IF (current is an array)
     // pass "current" to arraySum
@@ -39,32 +40,21 @@ var sum = function(array) {
     // [[1],[2,3],[[4]],5]
 // !!curr issue: at the [[4]], it start adding the numbers like a str instead of numbers
 var arraySum = function(array) {
-    /*
-    if (array.length === 0) {
-        return 0;
-    }
-    // if (array.length === 1) {
-    //     console.log('in base:', array[0], Array.isArray(array[0]));
-    //     return array[0];
+
+    // if (array.length === 0) {
+    //     return 0;
     // }
     var sum = 0;
     for (var i = 0; i < array.length; i++) {
         var current = array[i];
-        console.log('sum', sum, ' current:', current, ' type current:', typeof current);
-        if (Array.isArray(current)) {
-            console.log('current is Array', typeof current,'is curr an Arr:', Array.isArray(current));
+        if (Array.isArray(current)) { 
             sum += arraySum(current);
         } else {
-            console.log('else', typeof current);
             sum += current;
         }
     }
-    if (array.length === 1) {
-        console.log('in base:', array[0], Array.isArray(array[0]));
-        return array[0];
-    }
     return sum;
-    */
+    
 };
 
 // 4. Check if a number is even.
