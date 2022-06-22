@@ -278,10 +278,51 @@ var countKeysInObj = function(obj, key) {
 };
 
 // 23. Write a function that counts the number of times a value occurs in an object.
-// var obj = {'e':{'x':'y'},'t':{'r':{'e':'r'},'p':{'y':'r'}},'y':'e'};
+/*
+var obj = {'e':{
+                'x':'y'
+                },
+           't':{
+                'r':{
+                    'e':'r'
+                    },
+                'p':{
+                    'y':'r'
+                    }
+                },
+            'y':'e'
+            };
+*/
 // countValuesInObj(obj, 'r') // 2
 // countValuesInObj(obj, 'e') // 1
+// create "count" var = 0
+// IF ("obj" is an obj)
+    // loop thro "obj"
+    // IF (current val is an obj)
+        // recusive call - pass current val
+    // IF (current val is "value")
+        // make count++
+// return count
+//  -- e & r 
 var countValuesInObj = function(obj, value) {
+    var count = 0;
+    console.log('hit, obj:', obj);
+    if (typeof obj === 'object') {
+        for (var key in obj) {
+            if (typeof obj[key] === 'object') {
+                console.log('recursive call');
+                count += countValuesInObj(obj[key], value);
+            }
+            if (obj[key] === value) {
+
+                count++;
+                console.log('count++', count);
+                return count;
+            }
+        }
+    }
+    console.log('before return, count is:', count, 'current obj:', obj);
+    return count;
 };
 
 // 24. Find all keys in an object (and nested objects) by a provided name and rename
