@@ -314,7 +314,6 @@ var countValuesInObj = function(obj, value) {
                 count += countValuesInObj(obj[key], value);
             }
             if (obj[key] === value) {
-
                 count++;
                 console.log('count++', count);
                 return count;
@@ -327,7 +326,61 @@ var countValuesInObj = function(obj, value) {
 
 // 24. Find all keys in an object (and nested objects) by a provided name and rename
 // them to a provided new name while preserving the value stored at that key.
+/*
+var obj = {'e':{
+                'x':'y'
+                },
+           't':{
+                'r':{
+                    'e':'r'
+                    },
+                'p':{
+                    'y':'r'
+                    }
+                },
+            'y':'e'
+            };
+*/
+// y, u
+// IF ("obj" is an obj)
+    // loop thro "obj"
+        // IF (the current value is an obj)
+            // create valIsObj = true
+            // otherwise set valIsObj = false and set newKey if applicable
+
+        // IF (valIsObj is true)
+            // set newKey if applicable
+            // make recursive call - pass in the value of the current key
+        
 var replaceKeysInObj = function(obj, oldKey, newKey) {
+    if (typeof obj === 'object') {
+        for (var key in obj) {
+            if (key === 't') {
+                console.log('!!! t');
+            }
+            console.log('start of for-in, obj:', obj, 'key:', key);
+            if (typeof obj[key] === 'object') {
+                var valIsObj = true;
+            } else {
+                var valIsObj = false;
+                if (key === oldKey) {
+                    obj[newKey] = obj[key];
+                    delete obj[key];
+                }
+            }
+            console.log('before ValIsObj IF, obj:', obj, 'newKey:', newKey, ' key:', key);
+            if (valIsObj) {
+                if (key === oldKey) {
+                    obj[newKey] = obj[key];
+                    delete obj[key];
+                }
+                console.log(obj, ' newKey:', newKey);
+                replaceKeysInObj(obj[key], oldKey, newKey);
+            }
+        }
+    }
+    console.log('before final return, obj:', obj);
+    return obj;
 };
 
 // 25. Get the first n Fibonacci numbers. In the Fibonacci sequence, each subsequent
